@@ -21,9 +21,16 @@ public class EquipamentoTriggerHandler {
             }
         }
         
-        // Linha 29 agora vai rodar lisa!
         if (!chamadosParaCriar.isEmpty()) {
             insert chamadosParaCriar;
+            // 1. O Salesforce precisa de um Set com os IDs dos chamados que acabaram de nascer
+            Set<Id> idsDosCasos = new Set<Id>();
+            for (Case c : chamadosParaCriar) {
+                idsDosCasos.add(c.Id);
+            }
+            
+            // 2. Dispara a chamada assíncrona para a internet!
+            GarantiaService.consultarGarantiaExterna(idsDosCasos);
         }
     }
 }
