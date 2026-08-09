@@ -22,3 +22,6 @@ O sistema também cria um **Relacionamento de Pesquisa (Lookup)**, vinculando o 
 *   **SOQL** (Consultas no Banco de Dados)
 *   **Salesforce CLI / SFDX**
 *   **Modelagem Relacional (Custom Objects & Lookup Relationships)**
+
+## 🌐 Integração RESTful (Apex Callout)
+O sistema conta com uma integração assíncrona (`@future(callout=true)`) configurada para consumir uma API REST externa. No momento em que um equipamento é marcado como defeituoso, o backend do Salesforce realiza uma requisição GET para verificar o status de garantia do item. O JSON de resposta é desserializado e a informação de cobertura é injetada automaticamente na descrição do Ticket de Suporte (`Case`), centralizando os dados para a equipe técnica.
